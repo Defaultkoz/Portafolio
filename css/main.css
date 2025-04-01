@@ -1,4 +1,12 @@
+:root{
+    --ejeX:45deg
+}
+@font-face {
+    font-family: "Data-font";
+    src: url(/src/fonts/data-latin.ttf);
+}
 body{
+    font-family: "Data-font";
     background:fixed radial-gradient(rgb(43, 41, 41) 50%,rgb(0, 0, 0) 100%);
     display:flex ;
     flex-direction:column ;
@@ -95,6 +103,7 @@ nav{position: relative;
     outline: none;
     position: relative;
     border-radius: 15px 15px 15px 15px;
+    font-family: "Data-font";
     text-align: center;
     z-index: 0;
     border:none;
@@ -167,13 +176,9 @@ background-color: #111;
     grid-row: 1/3;
     height: 50%;
     width: 50%;
-    
+  
+    z-index: 1;
    
-}
-.img-container{
-    position: absolute;
-    left:0px;
-    top: 0px;
 }
 
 @keyframes rotate {
@@ -185,21 +190,36 @@ background-color: #111;
     }
 }
 .img-container {
-    border-radius: 100%;
-    border: #ff0000 2px;
-    border-style: dashed;
-   
-    height: 100%;
-    width: 95%;
-    
-    animation: rotate 13s linear infinite;
-}
 
- img {
+    border-radius: 50%;
+    border: #ff0000 2px dashed;
+    position: relative;
+    height:221px;
+    width: 221px;
+    animation: -rotate 13s linear infinite;
+    z-index: 2;
+    transform:perspective(1000px) rotateX(calc(var(--ejeX)-15deg)) scale(1);
+    transition:all 0.7s ease-in-out 0.7s;
+}
+ .foto:hover .img-container {
+    transform:perspective(1000px) rotateX(var(--ejeX)) scale(1.1) ;
+}
+.foto:hover .img-foto{
+    transform: perspective(1000px) translateY(-10%) rotateX(calc(var(--ejeX)-85deg));
+
+}
+ .img-foto {
     
-    height: 100%;
-    width: 95%;
-    border-radius: 100%;}
+    position: absolute;
+    left:32px;
+    top: 13%;
+    z-index: 3;
+    height: calc(100% - 60px);
+    width: calc(100% - 60px );
+    border-radius: 100%;
+    transform:perspective(1000px) rotateX(calc((--ejeX)-15deg)) translateY(0%) ;
+    transition: all 0.7s ease-in-out 0.7s;
+}
 
 .sqr>h3{
     border: #ff0000 1px solid;
@@ -244,7 +264,7 @@ transparent
     animation-delay: calc(10s/var(--quantity)*var(--index));
 }
 .slider:hover .item {
-    animation-play-state:paused!important;
+    animation-play-state:paused;
 }
 .list>.item>img{
    
